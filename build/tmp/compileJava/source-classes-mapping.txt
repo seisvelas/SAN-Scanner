@@ -1,2 +1,0 @@
-BurpExtender.java
- burp.BurpExtender
