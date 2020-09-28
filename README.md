@@ -10,7 +10,7 @@ SAN Scanner is a Burp Suite extension for enumerating associated domains & servi
 Some webmasters use a single SSL certificate to secure multiple domain names. This is accomplished via the Subject Alternative Name field. For example,
 the cert for StackOverflow.com contains dozens of other domain names covered by the same cert:
 
-![StackOverflow SSL Cert](https://github.com/seisvelas/SAN-Scanner/blob/master/Screenshot%20from%202020-09-28%2001-27-24.png)
+![StackOverflow SSL Cert](https://github.com/seisvelas/SAN-Scanner/blob/master/screenshots/Screenshot%20from%202020-09-28%2001-27-24.png)
 
 SAN certs convenience admins because they only have to worry about updating a single certificate for the various domains under their stewardship.
 
