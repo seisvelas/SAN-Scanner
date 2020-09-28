@@ -14,7 +14,7 @@ import java.util.Collection;
 
 public class BurpExtender implements IBurpExtender, IHttpListener {   
     private PrintWriter stdout;
-    private ArrayList<String> scannedDomains;
+    private ArrayList<String> scannedDomains = new ArrayList<String>();
     private String SANAlertFormat = "SAN found for %s: %s"; // hostname, SAN
     private IExtensionHelpers helpers;
     private IBurpExtenderCallbacks cb;
@@ -51,7 +51,6 @@ public class BurpExtender implements IBurpExtender, IHttpListener {
             if (!scannedDomains.contains(hostname)) {
                 ArrayList<String> SANs = subjectAlternativeNames(hostname);
                 for (String SAN : SANs) {
-                    stdout.println(SAN);
                     // Only alert the user if the SAN != the hostname (uninteresting)
                     if (!SAN.equals(hostname)) {
                         String SANAlert = String.format(SANAlertFormat, hostname, SAN);
@@ -74,7 +73,8 @@ public class BurpExtender implements IBurpExtender, IHttpListener {
                 Collection<List<?>> certSANs = cert.getSubjectAlternativeNames();
                 try {
                     for (List item : certSANs) {
-                        SANs.add((String)item.get(1));
+                        String SAN = (String)item.get(1);
+                        SANs.add(SAN.replace("*.", ""));
                     }
                 } catch (NullPointerException e) {
                     // cert has no SANs
