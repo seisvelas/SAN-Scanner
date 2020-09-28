@@ -5,7 +5,6 @@ SAN Scanner is a Burp Suite extension for enumerating associated domains & servi
 | [What is a SAN cert](#what-is-a-san-cert)  |
 | [Use for security professionals](#Use-for-security-professionals)  |
 | [Building the extension](#building-the-extension)  |
-| [Using the extension](#using-the-extension)  |
 
 
 ## What is a SAN cert
@@ -29,8 +28,12 @@ is useful for reminding webmasters to update such certs.
 
 ## Building the extension
 
-TODO. I still need to write this section. Will include instructions for installing deps, building from source, and loading the extension, on Ubuntu (20.04).
+You can build the directory using the following commands (on Linux):
 
-## Using the extension
+```
+git clone git@github.com:seisvelas/SAN-Scanner.git
+cd SAN-Scanner/
+gradle build
+```
 
-TODO. Should include screenshots of alert output running in Burp against real site.
+That's it! The .jar will be created in `build/libs/SAN\ Scanner.jar`, which you can load into Burp Extender.
