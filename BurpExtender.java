@@ -1,5 +1,20 @@
 package burp;
 
+/* 
+    Ideally we'd use a Burp library for networking, instead
+    of Java's native URL() class. Unfortunately, the makeHttpRequest()
+    method provided by Burp doesn't give us the means to
+    analyze SSL certs.
+    
+    Other SSL related Burp extensions are also impacted by this limitation
+    and resign themselves to the same approach used here. For example,
+    SSL Scanner: https://github.com/portswigger/ssl-scanner
+    Also uses java.net.URL.
+    
+    If Burp ever adds this functionality to their API, we should
+    switch to that.
+    
+*/
 import java.net.URL;
 import java.io.IOException;
 import java.io.PrintWriter;
