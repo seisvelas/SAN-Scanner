@@ -4,6 +4,9 @@ SAN Scanner is a Burp Suite extension for enumerating associated domains & servi
 | ------------- |
 | [What is a SAN cert](#what-is-a-san-cert)  |
 | [Use for security professionals](#Use-for-security-professionals)  |
+| [Building the extension](#building-the-extension)  |
+| [Using the extension](#using-the-extension)  |
+
 
 ## What is a SAN cert
 
