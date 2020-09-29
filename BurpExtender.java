@@ -16,6 +16,7 @@ package burp;
     
 */
 import java.net.URL;
+import java.net.MalformedURLException;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -23,7 +24,6 @@ import java.security.cert.Certificate;
 import java.security.cert.X509Certificate;
 import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.SSLPeerUnverifiedException;
-import java.net.MalformedURLException;
 import java.util.List;
 import java.util.Collection;
 
@@ -80,7 +80,6 @@ public class BurpExtender implements IBurpExtender, IHttpListener {
     // return array of SANs from hostname's TLS cert
     private ArrayList<String> subjectAlternativeNames(String hostname) {
         try {
-            // todo: make sure return array has only unique values
             X509Certificate[] certs = getCerts(hostname);
             ArrayList<String> SANs = new ArrayList<String>();
             
@@ -103,14 +102,13 @@ public class BurpExtender implements IBurpExtender, IHttpListener {
     }
 
     private X509Certificate[] getCerts(String hostname) {
-        // todo: cleaner exception handling
         try {
             URL httpsURL = new URL(String.format("https://%s", hostname));
             HttpsURLConnection connection = (HttpsURLConnection)httpsURL.openConnection();
             connection.connect();
             X509Certificate[] certs = (X509Certificate[])connection.getServerCertificates();
             return certs;
-        } catch (Exception e) {
+        } catch (IOException e) {
             return new X509Certificate[0];
         }
     }
